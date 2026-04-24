@@ -54,7 +54,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.el211:ModernClaims-API:TAG")
+    implementation("com.github.el211:ModernClaims-API:v1.0.0")
 }
 ```
 
@@ -71,7 +71,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.el211:ModernClaims-API:TAG")
+    implementation("com.github.el211:ModernClaims-API:v1.0.0")
 }
 ```
 
@@ -88,14 +88,15 @@ Maven:
 <dependency>
     <groupId>com.github.el211</groupId>
     <artifactId>ModernClaims-API</artifactId>
-    <version>TAG</version>
+    <version>v1.0.0</version>
 </dependency>
 ```
 
-Replace `TAG` with:
+Current stable tag:
 
-- a GitHub release tag such as `v1.0.0`
-- or a commit hash if you want to consume a specific commit immediately
+- `v1.0.0`
+
+You can also use a commit hash if you want to consume a specific commit immediately.
 
 Once a tag is pushed, JitPack will build it on first request. You can inspect builds at:
 
