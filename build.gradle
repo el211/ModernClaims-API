@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
 
 group = 'fr.oreo'
@@ -38,6 +39,17 @@ java {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release.set(targetJavaVersion)
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'com.github.el211'
+            artifactId = 'ModernClaims-API'
+            version = project.version
+        }
+    }
 }
 
 jar {
