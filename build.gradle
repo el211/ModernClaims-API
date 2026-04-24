@@ -1,0 +1,52 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'fr.oreo'
+version = '1.0-SNAPSHOT'
+
+def targetJavaVersion = 21
+def spigotApiVersion = '1.21.11-R0.1-SNAPSHOT'
+def repositoryUrl = 'https://github.com/el211/ModernClaims-API'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "spigotmc-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+}
+
+dependencies {
+    compileOnly("org.spigotmc:spigot-api:${spigotApiVersion}")
+}
+
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(targetJavaVersion)
+}
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': 'ModernClaims API',
+                'Implementation-Version': project.version,
+                'Implementation-Vendor': project.group,
+                'Implementation-URL': repositoryUrl
+        )
+    }
+}
